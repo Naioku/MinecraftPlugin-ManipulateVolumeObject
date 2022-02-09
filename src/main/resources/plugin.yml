@@ -6,5 +6,5 @@ description: Copying, deleting (etc.) volume objects.
 api-version: 1.18
 
 commands:
-  command1:
-    description: Example command.
+  manipulate_volume_obj:
+    description: Manipulate volume object commands.

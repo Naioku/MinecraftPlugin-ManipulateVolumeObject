@@ -1,10 +1,19 @@
 package pl.adrian_komuda.manipulate_volume_object;
 
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.adrian_komuda.manipulate_volume_object.commands.Commands;
+import pl.adrian_komuda.manipulate_volume_object.commands.AllCommandsData;
+import pl.adrian_komuda.manipulate_volume_object.commands.command_and_players.AllPlayerAndConsoleCommands;
+import pl.adrian_komuda.manipulate_volume_object.commands.player.AllPlayerCommands;
+import pl.adrian_komuda.manipulate_volume_object.commands.MinecraftCommandsReceiver;
 
 public class Main extends JavaPlugin {
-    Commands commander;
+    MinecraftCommandsReceiver commander;
+
+    public static Plugin getMain() {
+        return Bukkit.getPluginManager().getPlugin("ManipulateVolumeObject");
+    }
 
     @Override
     public void onEnable() {
@@ -18,7 +27,7 @@ public class Main extends JavaPlugin {
     }
 
     private void setUpCommands() {
-        commander = new Commands(this);
-        getCommand("command1").setExecutor(commander);
+        commander = new MinecraftCommandsReceiver(this);
+        getCommand(AllCommandsData.commandPrefix).setExecutor(commander);
     }
 }
