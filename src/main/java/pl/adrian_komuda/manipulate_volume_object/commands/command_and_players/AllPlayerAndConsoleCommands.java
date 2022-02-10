@@ -1,8 +1,6 @@
 package pl.adrian_komuda.manipulate_volume_object.commands.command_and_players;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import pl.adrian_komuda.manipulate_volume_object.commands.AllCommandsData;
 import pl.adrian_komuda.manipulate_volume_object.commands.CommandsPerformers;
 import pl.adrian_komuda.manipulate_volume_object.commands.command_and_players.particular_commands.Help;
 
