@@ -10,6 +10,7 @@ import pl.adrian_komuda.manipulate_volume_object.commands.command_and_players.Al
 import pl.adrian_komuda.manipulate_volume_object.commands.player.AllPlayerCommands;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MinecraftCommandsReceiver implements CommandExecutor, TabCompleter {
@@ -21,22 +22,26 @@ public class MinecraftCommandsReceiver implements CommandExecutor, TabCompleter 
     }
 
     @Override
-    public boolean onCommand(CommandSender commandSender, Command prefixFromConsole, String label, String[] commandAndArgs) {
+    public boolean onCommand(CommandSender commandSender, Command prefixReceived, String label, String[] commandAndArgs) {
 
-        if (prefixFromConsole.getName().equals(AllCommandsData.commandPrefix)) {
-            if (commandAndArgs.length == 1) {
-                String commandFromConsole = commandAndArgs[0];
+        if (prefixReceived.getName().equals(AllCommandsData.commandPrefix)) {
+            if (commandAndArgs.length >= 1) {
+
+                String commandReceived = commandAndArgs[0];
+                List<String> argsReceived = Arrays.stream(commandAndArgs).toList().subList(1, commandAndArgs.length);
 
                 for (AllPlayerAndConsoleCommands command : AllPlayerAndConsoleCommands.values()) {
-                    if (command.getName().equals(commandFromConsole)) {
-                        command.perform(commandSender, commandFromConsole, commandAndArgs);
+                    if (command.getName().equals(commandReceived)) {
+                        command.perform(commandSender, commandReceived, argsReceived);
+                        return true;
                     }
                 }
 
                 if (commandSender instanceof Player player) {
                     for (AllPlayerCommands command : AllPlayerCommands.values()) {
-                        if (command.getName().equals(commandFromConsole)) {
-                            command.perform(player, commandFromConsole, commandAndArgs);
+                        if (command.getName().equals(commandReceived)) {
+                            command.perform(player, commandReceived, argsReceived);
+                            return true;
                         }
                     }
                 }

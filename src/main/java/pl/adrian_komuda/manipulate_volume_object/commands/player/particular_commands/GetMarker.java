@@ -3,9 +3,11 @@ package pl.adrian_komuda.manipulate_volume_object.commands.player.particular_com
 import org.bukkit.entity.Player;
 import pl.adrian_komuda.manipulate_volume_object.commands.PlayerCommandsPerformers;
 
+import java.util.List;
+
 public class GetMarker implements PlayerCommandsPerformers {
     @Override
-    public void perform(Player player, String commandFromConsole, String[] args) {
+    public void perform(Player player, String command, List<String> args) {
         player.sendMessage("Performing " + this.getClass().getSimpleName()); // all logic
     }
 }

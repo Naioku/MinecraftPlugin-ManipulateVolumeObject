@@ -4,9 +4,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import pl.adrian_komuda.manipulate_volume_object.commands.CommandsPerformers;
 
+import java.util.List;
+
 public class Help implements CommandsPerformers {
     @Override
-    public void perform(CommandSender commandSender, String commandFromConsole, String[] args) {
+    public void perform(CommandSender commandSender, String command, List<String> args) {
         commandSender.sendMessage("Performing " + this.getClass().getSimpleName()); // all logic
     }
 }

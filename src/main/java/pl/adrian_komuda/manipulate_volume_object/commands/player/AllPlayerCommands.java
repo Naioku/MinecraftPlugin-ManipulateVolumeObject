@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 import pl.adrian_komuda.manipulate_volume_object.commands.PlayerCommandsPerformers;
 import pl.adrian_komuda.manipulate_volume_object.commands.player.particular_commands.GetMarker;
 
+import java.util.List;
+
 public enum AllPlayerCommands {
     GET_MARKER("get_marker", new GetMarker());
 //    RESET_COPY_LOCATION(""),
@@ -34,7 +36,7 @@ public enum AllPlayerCommands {
         return commandMinecraftName;
     }
 
-    public void perform(Player player, String commandFromConsole, String[] args) {
-        commandPerformer.perform(player, commandFromConsole, args);
+    public void perform(Player player, String command, List<String> args) {
+        commandPerformer.perform(player, command, args);
     }
 }

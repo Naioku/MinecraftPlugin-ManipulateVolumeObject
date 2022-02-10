@@ -6,6 +6,8 @@ import pl.adrian_komuda.manipulate_volume_object.commands.AllCommandsData;
 import pl.adrian_komuda.manipulate_volume_object.commands.CommandsPerformers;
 import pl.adrian_komuda.manipulate_volume_object.commands.command_and_players.particular_commands.Help;
 
+import java.util.List;
+
 public enum AllPlayerAndConsoleCommands {
     HELP("help", new Help());
 
@@ -21,7 +23,7 @@ public enum AllPlayerAndConsoleCommands {
         return commandMinecraftName;
     }
 
-    public void perform(CommandSender commandSender, String commandFromConsole, String[] args) {
-        commandPerformer.perform(commandSender, commandFromConsole, args);
+    public void perform(CommandSender commandSender, String command, List<String> args) {
+        commandPerformer.perform(commandSender, command, args);
     }
 }
