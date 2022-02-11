@@ -2,19 +2,19 @@ package pl.adrian_komuda.manipulate_volume_object.commands.player.particular_com
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import pl.adrian_komuda.manipulate_volume_object.Marker;
+import pl.adrian_komuda.manipulate_volume_object.items.ItemStackItems;
 import pl.adrian_komuda.manipulate_volume_object.commands.PlayerCommandsPerformers;
-import pl.adrian_komuda.manipulate_volume_object.messages.Messages;
+import pl.adrian_komuda.manipulate_volume_object.items.Marker;
+import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith0Params;
 
 import java.util.List;
 
 public class GetMarker implements PlayerCommandsPerformers {
 
-    private final Marker marker = new Marker();
+    private final Marker marker = ItemStackItems.getItemStackItems().getMarker();
 
     @Override
     public void perform(Player player, String command, List<String> args) {
-        player.sendMessage("Performing " + this.getClass().getSimpleName()); // all logic
         if (!doesPlayerAlreadyHaveItem(player, marker.getItem())) {
             if (isInventoryFull(player)) {
                 marker.dropItemNearPlayer(player);
@@ -22,7 +22,7 @@ public class GetMarker implements PlayerCommandsPerformers {
                 marker.addItemToInventory(player);
             }
         } else {
-            player.sendMessage(Messages.ALREADY_HAVE_ITEM_IN_INVENTORY.getMessage());
+            player.sendMessage(MessagesWith0Params.ALREADY_HAVE_ITEM_IN_INVENTORY.getMessage());
         }
     }
 

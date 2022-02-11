@@ -7,7 +7,8 @@ public enum PluginColors {
     ITEM_HEADERS(ChatColor.GREEN),
     INFO_MESSAGES(ChatColor.GOLD),
     SUCCESS_MESSAGES(ChatColor.GREEN),
-    FAIL_MESSAGES(ChatColor.RED);
+    FAIL_MESSAGES(ChatColor.RED),
+    HIGHLIGHT_INFO(ChatColor.AQUA);
 
     private final ChatColor color;
 

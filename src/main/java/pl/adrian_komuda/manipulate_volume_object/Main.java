@@ -4,9 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.adrian_komuda.manipulate_volume_object.commands.AllCommandsData;
-import pl.adrian_komuda.manipulate_volume_object.commands.command_and_players.AllPlayerAndConsoleCommands;
-import pl.adrian_komuda.manipulate_volume_object.commands.player.AllPlayerCommands;
 import pl.adrian_komuda.manipulate_volume_object.commands.MinecraftCommandsReceiver;
+import pl.adrian_komuda.manipulate_volume_object.listeners.MarkLocationListener;
 
 public class Main extends JavaPlugin {
     MinecraftCommandsReceiver commander;
@@ -19,6 +18,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
         setUpCommands();
+        setUpListeners();
     }
 
     @Override
@@ -29,5 +29,9 @@ public class Main extends JavaPlugin {
     private void setUpCommands() {
         commander = new MinecraftCommandsReceiver(this);
         getCommand(AllCommandsData.commandPrefix).setExecutor(commander);
+    }
+
+    private void setUpListeners() {
+        this.getServer().getPluginManager().registerEvents(new MarkLocationListener(), this);
     }
 }
