@@ -8,17 +8,24 @@ import java.util.List;
 
 public enum AllPlayerCommands {
     GET_MARKER("get_marker", new GetMarker()),
-    RESET_COPY_LOCATION("reset_copy_location", new ResetCopyLocation()),
-    PRINT_LOCATIONS("print_locations", new PrintLocations()),
     START_COPYING("start_copying", new StartCopying()),
     STOP_COPYING("stop_copying", new StopCopying()),
     START_PASTING("start_pasting", new StartPasting()),
     STOP_PASTING("stop_pasting", new StopPasting()),
-//    PRINT_OBJECT_FROM_MEMORY, // ?
-    PRINT_SWITCH_OPTION("print_switch_option", new PrintSwitchOption()),
-    CHANGE_SWITCH_OPTION("change_switch_option", new ChangeSwitchOption()),
-    RELOAD_CONFIG_FILE("reload_config_file", new ReloadConfigFile()),
+    // START_DELETING,
+    // STOP_DELETING,
     UNDO("undo", new Undo()),
+    CHANGE_SWITCH_OPTION("change_switch_option", new ChangeSwitchOption()),
+
+    PRINT_LOCATIONS("print_locations", new PrintLocations()), // ok
+    PRINT_SWITCH_OPTION("print_switch_option", new PrintSwitchOption()),
+
+    RELOAD_CONFIG_FILE("reload_config_file", new ReloadConfigFile()),
+    //    RESET_COPY_LOCATION("reset_copy_location", new ResetCopyLocation()), // ?
+
+//    PRINT_OBJECT_FROM_MEMORY, // ?
+
+
     CHECK_HISTORY("check_history", new CheckHistory()),
     DELETE_MARKED_VOLUME("delete_marked_volume", new DeleteMarkedVolume());
 //    RESET_DELETE_LOCATIONS, // ?
