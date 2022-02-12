@@ -1,12 +1,17 @@
 package pl.adrian_komuda.manipulate_volume_object.commands.player;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+import pl.adrian_komuda.manipulate_volume_object.TestUtils;
 
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 class AllPlayerCommandsTest {
 
@@ -42,14 +47,10 @@ class AllPlayerCommandsTest {
         String enumValue = playerCommand.name();
 
         // when
-        String resultEnumValue = changeSnakeCaseToUpperCase(commandName);
+        String resultEnumValue = TestUtils.changeSnakeCaseToUpperCase(commandName);
 
         // then
         assertThat(resultEnumValue).isEqualTo(enumValue);
-    }
-
-    private static String changeSnakeCaseToUpperCase(String string) {
-        return string.toUpperCase(Locale.ROOT);
     }
 
 }

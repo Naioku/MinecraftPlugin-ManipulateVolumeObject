@@ -13,6 +13,6 @@ public class PrintLocations implements PlayerCommandsPerformers {
 
     @Override
     public void perform(Player player, String command, List<String> args) {
-        player.sendMessage(marker.getLocations());
+        player.sendMessage(marker.getLocationsAsMessage());
     }
 }

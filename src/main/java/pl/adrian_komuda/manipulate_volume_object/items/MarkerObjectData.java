@@ -1,6 +1,7 @@
-package pl.adrian_komuda.manipulate_volume_object;
+package pl.adrian_komuda.manipulate_volume_object.items;
 
 import org.bukkit.Material;
+import pl.adrian_komuda.manipulate_volume_object.PluginColors;
 
 import java.util.Arrays;
 import java.util.List;

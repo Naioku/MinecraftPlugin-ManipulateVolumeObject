@@ -15,10 +15,10 @@ public enum AllPlayerCommands {
     // START_DELETING,
     // STOP_DELETING,
     UNDO("undo", new Undo()),
-    CHANGE_SWITCH_OPTION("change_switch_option", new ChangeSwitchOption()),
+    CHANGE_OPTION("change_option", new ChangeOption()), // ok
 
     PRINT_LOCATIONS("print_locations", new PrintLocations()), // ok
-    PRINT_SWITCH_OPTION("print_switch_option", new PrintSwitchOption()),
+    PRINT_OPTION("print_option", new PrintOption()),
 
     RELOAD_CONFIG_FILE("reload_config_file", new ReloadConfigFile()),
     //    RESET_COPY_LOCATION("reset_copy_location", new ResetCopyLocation()), // ?
