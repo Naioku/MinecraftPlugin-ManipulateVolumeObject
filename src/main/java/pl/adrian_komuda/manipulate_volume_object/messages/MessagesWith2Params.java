@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 import pl.adrian_komuda.manipulate_volume_object.PluginColors;
 
 public enum MessagesWith2Params {
-    LOCATIONS("Locations are:\n" +
+    GET_LOCATIONS("Locations are:\n" +
             "Location1: " + PluginColors.HIGHLIGHT_INFO.getColor() + "%s" + "\n" + ChatColor.WHITE +
             "Location2: " + PluginColors.HIGHLIGHT_INFO.getColor() + "%s" + "\n" + ChatColor.WHITE +
             "================");

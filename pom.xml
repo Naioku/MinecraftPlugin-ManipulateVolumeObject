@@ -6,7 +6,7 @@
 
     <groupId>pl.adrian_komuda</groupId>
     <artifactId>MinecraftPlugin-ManipulateVolumeObject</artifactId>
-    <version>0.1</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -55,6 +55,11 @@
             <artifactId>assertj-core</artifactId>
             <version>3.21.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>4.0.0</version>
         </dependency>
 
     </dependencies>

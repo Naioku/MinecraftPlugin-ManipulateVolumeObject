@@ -6,7 +6,6 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pl.adrian_komuda.manipulate_volume_object.MarkerObjectData;
 import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith0Params;
 import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith2Params;
 
@@ -61,8 +60,8 @@ public class Marker {
         return item;
     }
 
-    public String getLocations() {
-        return MessagesWith2Params.LOCATIONS.getMessage(String.valueOf(location1), String.valueOf(location2));
+    public String getLocationsAsMessage() {
+        return MessagesWith2Params.GET_LOCATIONS.getMessage(String.valueOf(location1), String.valueOf(location2));
     }
 
     private void createItemStack() {
