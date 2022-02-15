@@ -16,14 +16,14 @@ public enum AllPlayerCommands {
     // STOP_DELETING,
     UNDO("undo", new Undo()),
     CHANGE_OPTION("change_option", new ChangeOption()), // ok
-
+    PRINT_OPTION("print_option", new PrintOption()), // ok
     PRINT_LOCATIONS("print_locations", new PrintLocations()), // ok
-    PRINT_OPTION("print_option", new PrintOption()),
+
 
     RELOAD_CONFIG_FILE("reload_config_file", new ReloadConfigFile()),
     //    RESET_COPY_LOCATION("reset_copy_location", new ResetCopyLocation()), // ?
 
-//    PRINT_OBJECT_FROM_MEMORY, // ?
+    PRINT_OBJECT_FROM_MEMORY("print_object_from_memory", new PrintObjectFromMemory()), // ONLY TEMP. COMMAND
 
 
     CHECK_HISTORY("check_history", new CheckHistory()),

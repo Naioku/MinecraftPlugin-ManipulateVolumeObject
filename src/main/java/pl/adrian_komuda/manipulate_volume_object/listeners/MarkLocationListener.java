@@ -10,12 +10,14 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import pl.adrian_komuda.manipulate_volume_object.items.ItemStackItems;
 import pl.adrian_komuda.manipulate_volume_object.items.Marker;
+import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
 
 import java.util.Objects;
 
 public class MarkLocationListener implements Listener {
 
-    private final Marker marker = ItemStackItems.getItemStackItems().getMarker();
+    private final Marker marker = ItemStackItems.getInstance().getMarker();
+    private final LocationService locationService = LocationService.getInstance();
 
     @EventHandler
     public void markLocation(PlayerInteractEvent event) {
@@ -27,7 +29,7 @@ public class MarkLocationListener implements Listener {
                 marker.doesItMarker(itemInMainHand)) {
             Location clickedLocation = Objects.requireNonNull(event.getClickedBlock()).getLocation();
 
-            String answer = marker.markLocation(clickedLocation);
+            String answer = locationService.markLocation(clickedLocation);
             player.sendMessage(answer);
         }
     }

@@ -8,7 +8,10 @@ public enum PluginColors {
     INFO_MESSAGES(ChatColor.GOLD),
     SUCCESS_MESSAGES(ChatColor.GREEN),
     FAIL_MESSAGES(ChatColor.RED),
-    HIGHLIGHT_INFO(ChatColor.AQUA);
+    HIGHLIGHT_INFO(ChatColor.AQUA),
+    PROCESSING_TITLE(ChatColor.WHITE),
+    PERCENT_TITLE(ChatColor.WHITE),
+    DONE_TITLE(ChatColor.GOLD);
 
     private final ChatColor color;
 

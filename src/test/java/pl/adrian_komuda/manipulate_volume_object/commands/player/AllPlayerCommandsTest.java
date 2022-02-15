@@ -1,19 +1,22 @@
 package pl.adrian_komuda.manipulate_volume_object.commands.player;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Server;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+import pl.adrian_komuda.manipulate_volume_object.TestFlag;
 import pl.adrian_komuda.manipulate_volume_object.TestUtils;
 
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 
 class AllPlayerCommandsTest {
+
+    @BeforeAll
+    static void setTestFlag() {
+        TestFlag.TEST_FLAG = true;
+    }
 
     @ParameterizedTest
     @EnumSource(AllPlayerCommands.class)
@@ -51,6 +54,11 @@ class AllPlayerCommandsTest {
 
         // then
         assertThat(resultEnumValue).isEqualTo(enumValue);
+    }
+
+    @AfterAll
+    static void unsetTestFlag() {
+        TestFlag.TEST_FLAG =  false;
     }
 
 }

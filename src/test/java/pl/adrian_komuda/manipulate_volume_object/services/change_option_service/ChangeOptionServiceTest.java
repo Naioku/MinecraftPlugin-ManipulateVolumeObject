@@ -1,6 +1,9 @@
-package pl.adrian_komuda.manipulate_volume_object.change_option;
+package pl.adrian_komuda.manipulate_volume_object.services.change_option_service;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pl.adrian_komuda.manipulate_volume_object.TestFlag;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +11,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ChangeOptionServiceTest {
+
+    @BeforeAll
+    static void setTestFlag() {
+        TestFlag.TEST_FLAG = true;
+    }
 
     @Test
     void afterSetOptionCallCurrentOptionFieldShouldBeProperlySet() {
@@ -55,4 +63,8 @@ class ChangeOptionServiceTest {
         return optionsList.get(index);
     }
 
+    @AfterAll
+    static void unsetTestFlag() {
+        TestFlag.TEST_FLAG =  false;
+    }
 }

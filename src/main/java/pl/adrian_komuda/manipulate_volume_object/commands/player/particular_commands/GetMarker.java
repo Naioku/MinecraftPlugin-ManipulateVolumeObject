@@ -11,10 +11,10 @@ import java.util.List;
 
 public class GetMarker implements PlayerCommandsPerformers {
 
-    private final Marker marker = ItemStackItems.getItemStackItems().getMarker();
-
     @Override
     public void perform(Player player, String command, List<String> args) {
+        Marker marker = ItemStackItems.getInstance().getMarker();
+
         if (!doesPlayerAlreadyHaveItem(player, marker.getItem())) {
             if (isInventoryFull(player)) {
                 marker.dropItemNearPlayer(player);

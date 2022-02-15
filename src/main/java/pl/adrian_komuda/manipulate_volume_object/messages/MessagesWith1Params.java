@@ -1,6 +1,5 @@
 package pl.adrian_komuda.manipulate_volume_object.messages;
 
-import org.bukkit.ChatColor;
 import pl.adrian_komuda.manipulate_volume_object.PluginColors;
 
 public enum MessagesWith1Params {
