@@ -1,4 +1,4 @@
-package pl.adrian_komuda.manipulate_volume_object.commands.player;
+package pl.adrian_komuda.manipulate_volume_object.commands.console_and_players;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,7 +9,7 @@ import pl.adrian_komuda.manipulate_volume_object.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AllPlayerCommandsTest {
+class AllPlayerAndConsoleCommandsTest {
 
     @BeforeAll
     static void setTestFlag() {
@@ -17,8 +17,8 @@ class AllPlayerCommandsTest {
     }
 
     @ParameterizedTest
-    @EnumSource(AllPlayerCommands.class)
-    void everyCommandShouldBeProperlyAssignedToProperCommandClass(AllPlayerCommands playerCommand) {
+    @EnumSource(AllPlayerAndConsoleCommands.class)
+    void everyCommandShouldBeProperlyAssignedToProperCommandClass(AllPlayerAndConsoleCommands playerCommand) {
         // given
         String commandName = playerCommand.getName();
         String className = playerCommand.getCommandPerformer().getClass().getSimpleName();
@@ -31,8 +31,8 @@ class AllPlayerCommandsTest {
     }
 
     @ParameterizedTest
-    @EnumSource(AllPlayerCommands.class)
-    void everyCommandShouldBeProperlyAssignedToProperEnumValue(AllPlayerCommands playerCommand) {
+    @EnumSource(AllPlayerAndConsoleCommands.class)
+    void everyCommandShouldBeProperlyAssignedToProperEnumValue(AllPlayerAndConsoleCommands playerCommand) {
         // given
         String commandName = playerCommand.getName();
         String enumValue = playerCommand.name();

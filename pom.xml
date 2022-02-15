@@ -6,7 +6,7 @@
 
     <groupId>pl.adrian_komuda</groupId>
     <artifactId>MinecraftPlugin-ManipulateVolumeObject</artifactId>
-    <version>0.4</version>
+    <version>0.6</version>
     <packaging>jar</packaging>
 
     <properties>

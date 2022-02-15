@@ -14,41 +14,35 @@ public enum AllPlayerCommands {
     STOP_PASTING("stop_pasting", new StopPasting()),
     // START_DELETING,
     // STOP_DELETING,
-    UNDO("undo", new Undo()),
+//    UNDO("undo", new Undo()),
     CHANGE_OPTION("change_option", new ChangeOption()), // ok
     PRINT_OPTION("print_option", new PrintOption()), // ok
-    PRINT_LOCATIONS("print_locations", new PrintLocations()), // ok
+    PRINT_LOCATIONS("print_locations", new PrintLocations()); // ok
 
 
-    RELOAD_CONFIG_FILE("reload_config_file", new ReloadConfigFile()),
+//    RELOAD_CONFIG_FILE("reload_config_file", new ReloadConfigFile()),
     //    RESET_COPY_LOCATION("reset_copy_location", new ResetCopyLocation()), // ?
 
-    PRINT_OBJECT_FROM_MEMORY("print_object_from_memory", new PrintObjectFromMemory()), // ONLY TEMP. COMMAND
 
-
-    CHECK_HISTORY("check_history", new CheckHistory()),
-    DELETE_MARKED_VOLUME("delete_marked_volume", new DeleteMarkedVolume());
+//    CHECK_HISTORY("check_history", new CheckHistory()),
+//    DELETE_MARKED_VOLUME("delete_marked_volume", new DeleteMarkedVolume());
 //    RESET_DELETE_LOCATIONS, // ?
 //    STOP_DELETING; // ?
 
-    private final String commandMinecraftName;
+    private final String commandName;
     private final PlayerCommandsPerformers commandPerformer;
 
-    AllPlayerCommands(String commandMinecraftName, PlayerCommandsPerformers commandPerformer) {
-        this.commandMinecraftName = commandMinecraftName;
+    AllPlayerCommands(String commandName, PlayerCommandsPerformers commandPerformer) {
+        this.commandName = commandName;
         this.commandPerformer = commandPerformer;
     }
 
     public String getName() {
-        return commandMinecraftName;
+        return commandName;
     }
 
     public void perform(Player player, String command, List<String> args) {
         commandPerformer.perform(player, command, args);
-    }
-
-    public String getCommandMinecraftName() {
-        return commandMinecraftName;
     }
 
     public PlayerCommandsPerformers getCommandPerformer() {

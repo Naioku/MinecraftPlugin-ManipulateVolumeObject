@@ -6,8 +6,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import pl.adrian_komuda.manipulate_volume_object.commands.command_and_players.AllPlayerAndConsoleCommands;
+import pl.adrian_komuda.manipulate_volume_object.TestFlags;
+import pl.adrian_komuda.manipulate_volume_object.commands.console_and_players.AllPlayerAndConsoleCommands;
 import pl.adrian_komuda.manipulate_volume_object.commands.player.AllPlayerCommands;
+import pl.adrian_komuda.manipulate_volume_object.commands.player.AllPlayerTestCommands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +40,15 @@ public class MinecraftCommandsReceiver implements CommandExecutor, TabCompleter 
                 }
 
                 if (commandSender instanceof Player player) {
+                    if (TestFlags.FUNCTIONAL_TEST_FLAG) {
+                        for (AllPlayerTestCommands command : AllPlayerTestCommands.values()) {
+                            if (command.getName().equals(commandReceived)) {
+                                command.perform(player, commandReceived, argsReceived);
+                                return true;
+                            }
+                        }
+                    }
+
                     for (AllPlayerCommands command : AllPlayerCommands.values()) {
                         if (command.getName().equals(commandReceived)) {
                             command.perform(player, commandReceived, argsReceived);
@@ -62,6 +73,11 @@ public class MinecraftCommandsReceiver implements CommandExecutor, TabCompleter 
                 }
 
                 if (commandSender instanceof Player) {
+                    if (TestFlags.FUNCTIONAL_TEST_FLAG) {
+                        for(AllPlayerTestCommands command : AllPlayerTestCommands.values()) {
+                            tabCompleteCollection.add(command.getName());
+                        }
+                    }
                     for (AllPlayerCommands command : AllPlayerCommands.values()) {
                         tabCompleteCollection.add(command.getName());
                     }

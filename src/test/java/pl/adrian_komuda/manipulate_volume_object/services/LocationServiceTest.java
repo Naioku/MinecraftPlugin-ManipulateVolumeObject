@@ -5,7 +5,7 @@ import org.bukkit.World;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pl.adrian_komuda.manipulate_volume_object.TestFlag;
+import pl.adrian_komuda.manipulate_volume_object.TestFlags;
 import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith0Params;
 import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith2Params;
 
@@ -16,7 +16,7 @@ class LocationServiceTest {
 
     @BeforeAll
     static void setTestFlag() {
-        TestFlag.TEST_FLAG = true;
+        TestFlags.UNIT_TEST_FLAG = true;
     }
 
     @Test
@@ -131,7 +131,7 @@ class LocationServiceTest {
 
     @AfterAll
     static void unsetTestFlag() {
-        TestFlag.TEST_FLAG =  false;
+        TestFlags.UNIT_TEST_FLAG =  false;
     }
 
 }
