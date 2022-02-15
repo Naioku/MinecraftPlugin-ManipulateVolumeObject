@@ -10,7 +10,7 @@ import pl.adrian_komuda.manipulate_volume_object.listeners.MarkLocationListener;
 public class Main extends JavaPlugin {
     MinecraftCommandsReceiver commander;
 
-    public static Plugin getMain() {
+    public static Plugin getInstance() {
         return Bukkit.getPluginManager().getPlugin("ManipulateVolumeObject");
     }
 
