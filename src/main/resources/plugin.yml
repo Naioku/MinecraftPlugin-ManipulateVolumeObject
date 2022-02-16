@@ -1,5 +1,5 @@
 name: ManipulateVolumeObject
-version: 0.1
+version: 0.6
 author: Naioku
 main: pl.adrian_komuda.manipulate_volume_object.Main
 description: Copying, deleting (etc.) volume objects.

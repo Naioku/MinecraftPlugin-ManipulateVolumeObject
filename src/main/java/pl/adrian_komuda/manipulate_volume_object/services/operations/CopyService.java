@@ -1,12 +1,9 @@
 package pl.adrian_komuda.manipulate_volume_object.services.operations;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 import pl.adrian_komuda.manipulate_volume_object.Main;
 import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
@@ -38,10 +35,13 @@ public class CopyService {
     private final int callsQuantityForOneTick = 10;
 
     public CopyService(Player player) throws IllegalArgumentException {
-        this.player = player;
-        this.world = player.getWorld();
+        setPlayerAndWorld(player);
         setUpVectors();
-        startCopyRunnable();
+        deleteObjectInMemory();
+    }
+
+    private void deleteObjectInMemory() {
+        OperationsUtils.getInstance().getCopiedObj().clear();
     }
 
     public void countOneBlock() {
@@ -140,10 +140,6 @@ public class CopyService {
         return callsQuantityForOneTick;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
     public void startCopyRunnable() {
         copyRunnable = new CopyRunnable(this);
         copyRunnable.runTaskTimer(Main.getInstance(), 0, 0);
@@ -151,6 +147,21 @@ public class CopyService {
 
     public void endProcess() {
         locationService.resetLocations();
+    }
+
+    public void abortProcess() {
+        if (copyRunnable.isCancelled()) {
+            throw new IllegalStateException(ErrorMessages.NOTHING_TO_ABORT.getMessage());
+        }
+        copyRunnable.cancel();
+        locationService.resetLocations();
+        OperationsUtils.getInstance().getCopiedObj().clear();
+        copyRunnable = null;
+    }
+
+    private void setPlayerAndWorld(Player player) {
+        this.player = player;
+        this.world = player.getWorld();
     }
 
     private void setUpVectors() throws IllegalArgumentException {

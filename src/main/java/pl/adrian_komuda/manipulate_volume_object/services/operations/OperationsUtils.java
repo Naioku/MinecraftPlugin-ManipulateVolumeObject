@@ -23,7 +23,7 @@ public class OperationsUtils {
 
     public String getCompletionPercent(int numerator, int denominator) {
         int completionPercent = (int) Math.floor((float) numerator/denominator * 100);
-        return String.valueOf(completionPercent) + "%";
+        return completionPercent + "%";
     }
 
     public void printCompletionPercentOnScreen(Player player, int counter, int maxCounter) {
@@ -37,7 +37,6 @@ public class OperationsUtils {
                 onlyPercentMessage.getStayPeriodTicks(),
                 onlyPercentMessage.getFadeOutTicks()
         );
-
     }
 
     public void printDoneOnScreen(Player player, int counter, int maxCounter) {
@@ -55,11 +54,12 @@ public class OperationsUtils {
     public void printProcessingOnScreen(Player player) {
         var message = TitleMessages.PROCESSING;
         player.sendTitle(
-                "",
+                " ",
                 message.getMessage(),
                 message.getFadeInTicks(),
                 message.getStayPeriodTicks(),
-                message.getFadeOutTicks());
+                message.getFadeOutTicks()
+        );
     }
 
     public LinkedHashMap<Vector, Material> getCopiedObj() {
