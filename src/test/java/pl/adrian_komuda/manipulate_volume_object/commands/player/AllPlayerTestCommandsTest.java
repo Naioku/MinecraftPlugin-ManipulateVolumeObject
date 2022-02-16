@@ -9,7 +9,7 @@ import pl.adrian_komuda.manipulate_volume_object.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AllPlayerCommandsTest {
+class AllPlayerTestCommandsTest {
 
     @BeforeAll
     static void setTestFlag() {
@@ -17,8 +17,8 @@ class AllPlayerCommandsTest {
     }
 
     @ParameterizedTest
-    @EnumSource(AllPlayerCommands.class)
-    void everyCommandShouldBeProperlyAssignedToProperCommandClass(AllPlayerCommands playerCommand) {
+    @EnumSource(AllPlayerTestCommands.class)
+    void everyCommandShouldBeProperlyAssignedToProperCommandClass(AllPlayerTestCommands playerCommand) {
         // given
         String commandName = playerCommand.getName();
         String className = playerCommand.getCommandPerformer().getClass().getSimpleName();
@@ -31,8 +31,8 @@ class AllPlayerCommandsTest {
     }
 
     @ParameterizedTest
-    @EnumSource(AllPlayerCommands.class)
-    void everyCommandShouldBeProperlyAssignedToProperEnumValue(AllPlayerCommands playerCommand) {
+    @EnumSource(AllPlayerTestCommands.class)
+    void everyCommandShouldBeProperlyAssignedToProperEnumValue(AllPlayerTestCommands playerCommand) {
         // given
         String commandName = playerCommand.getName();
         String enumValue = playerCommand.name();

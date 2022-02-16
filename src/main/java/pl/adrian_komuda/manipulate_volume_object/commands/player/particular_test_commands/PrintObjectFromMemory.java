@@ -1,4 +1,4 @@
-package pl.adrian_komuda.manipulate_volume_object.commands.player.particular_commands;
+package pl.adrian_komuda.manipulate_volume_object.commands.player.particular_test_commands;
 
 import org.bukkit.entity.Player;
 import pl.adrian_komuda.manipulate_volume_object.commands.PlayerCommandsPerformers;

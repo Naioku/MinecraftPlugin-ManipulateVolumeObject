@@ -6,7 +6,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pl.adrian_komuda.manipulate_volume_object.TestFlag;
+import pl.adrian_komuda.manipulate_volume_object.TestFlags;
 import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith0Params;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class Marker {
 
     private void createItemStack() {
 
-        if (!TestFlag.TEST_FLAG) {
+        if (!TestFlags.UNIT_TEST_FLAG) {
             item = new ItemStack(itemMaterial);
             ItemMeta meta = Objects.requireNonNull(item.getItemMeta());
             meta.setDisplayName(itemName);
