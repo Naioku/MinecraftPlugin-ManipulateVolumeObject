@@ -1,22 +1,17 @@
 package pl.adrian_komuda.manipulate_volume_object.services.operations;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 import pl.adrian_komuda.manipulate_volume_object.messages.TitleMessages;
 
-import java.util.LinkedHashMap;
+public class OperationUtils {
 
-public class OperationsUtils {
+    private static OperationUtils instance;
 
-    private static OperationsUtils instance;
-    private final LinkedHashMap<Vector, Material> copiedObj = new LinkedHashMap<>();
+    private OperationUtils() {}
 
-    private OperationsUtils() {}
-
-    public static OperationsUtils getInstance() {
+    public static OperationUtils getInstance() {
         if (instance == null) {
-            instance = new OperationsUtils();
+            instance = new OperationUtils();
         }
         return instance;
     }
@@ -60,9 +55,5 @@ public class OperationsUtils {
                 message.getStayPeriodTicks(),
                 message.getFadeOutTicks()
         );
-    }
-
-    public LinkedHashMap<Vector, Material> getCopiedObj() {
-        return copiedObj;
     }
 }

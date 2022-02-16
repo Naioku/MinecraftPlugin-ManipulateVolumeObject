@@ -13,7 +13,8 @@ import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
 public class CopyService {
 
     LocationService locationService = LocationService.getInstance();
-    OperationsUtils operationsUtils = OperationsUtils.getInstance();
+    OperationUtils operationUtils = OperationUtils.getInstance();
+    ObjectInMemoryService objectInMemoryService = ObjectInMemoryService.getInstance();
 
     private CopyRunnable copyRunnable;
 
@@ -41,7 +42,7 @@ public class CopyService {
     }
 
     private void deleteObjectInMemory() {
-        OperationsUtils.getInstance().getCopiedObj().clear();
+        objectInMemoryService.clearObject();
     }
 
     public void countOneBlock() {
@@ -78,7 +79,7 @@ public class CopyService {
         Location tracedBlockLoc = new Location(world, pointingBlockVector.getX(), pointingBlockVector.getY(), pointingBlockVector.getZ());
         Material tracedBlockMat = world.getBlockAt(tracedBlockLoc).getType();
 
-        operationsUtils.getCopiedObj().put(relativeVector, tracedBlockMat);
+        objectInMemoryService.addBlock(relativeVector, tracedBlockMat);
 
         x++;
 
@@ -97,15 +98,15 @@ public class CopyService {
     }
 
     public void printCompletionPercentOnScreen() {
-        operationsUtils.printCompletionPercentOnScreen(player, counter, maxCounter);
+        operationUtils.printCompletionPercentOnScreen(player, counter, maxCounter);
     }
 
     public void printDoneOnScreen() {
-        operationsUtils.printDoneOnScreen(player, counter, maxCounter);
+        operationUtils.printDoneOnScreen(player, counter, maxCounter);
     }
 
     public void printProcessingOnScreen() {
-        operationsUtils.printProcessingOnScreen(player);
+        operationUtils.printProcessingOnScreen(player);
     }
 
     public void startProcess() {
@@ -155,7 +156,7 @@ public class CopyService {
         }
         copyRunnable.cancel();
         locationService.resetLocations();
-        OperationsUtils.getInstance().getCopiedObj().clear();
+        objectInMemoryService.clearObject();
         copyRunnable = null;
     }
 
