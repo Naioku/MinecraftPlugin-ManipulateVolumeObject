@@ -10,13 +10,19 @@ public enum TitleMessages {
             1
     ),
     ONLY_PERCENT(
-            PluginColors.PERCENT_TITLE.getColor() + "",
+            " ",
             1,
             20,
             1
     ),
     DONE(
             PluginColors.DONE_TITLE.getColor() + "Done!",
+            1,
+            20,
+            1
+    ),
+    ABORTED(
+            PluginColors.ABORTED_TITLE.getColor() + "Aborted!",
             1,
             20,
             1

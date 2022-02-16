@@ -9,7 +9,7 @@ public class CopyRunnable extends BukkitRunnable {
 
     public CopyRunnable(CopyService copyService) {
         this.copyService = copyService;
-        copyService.startProcess();
+        copyService.setReady();
     }
 
     @Override

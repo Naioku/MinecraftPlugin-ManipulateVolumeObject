@@ -5,18 +5,15 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
-import pl.adrian_komuda.manipulate_volume_object.Main;
 import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
-import pl.adrian_komuda.manipulate_volume_object.runnables.CopyRunnable;
 import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
 
 public class CopyService {
 
-    LocationService locationService = LocationService.getInstance();
-    OperationUtils operationUtils = OperationUtils.getInstance();
-    ObjectInMemoryService objectInMemoryService = ObjectInMemoryService.getInstance();
-
-    private CopyRunnable copyRunnable;
+    private final LocationService locationService = LocationService.getInstance();
+    private final OperationUtils operationUtils = OperationUtils.getInstance();
+    private final ObjectInMemoryService objectInMemoryService = ObjectInMemoryService.getInstance();
+    private final CopyRunnableManager copyRunnableManager = CopyRunnableManager.getInstance();
 
     private Player player;
     private World world;
@@ -33,7 +30,7 @@ public class CopyService {
     private boolean isProcessingRunning = false;
     private boolean isCopyingRunning = false;
 
-    private final int callsQuantityForOneTick = 10;
+    private final int callsQuantityForOneTick = 1;
 
     public CopyService(Player player) throws IllegalArgumentException {
         setPlayerAndWorld(player);
@@ -109,7 +106,7 @@ public class CopyService {
         operationUtils.printProcessingOnScreen(player);
     }
 
-    public void startProcess() {
+    public void setReady() {
         startProcessing();
     }
 
@@ -142,8 +139,7 @@ public class CopyService {
     }
 
     public void startCopyRunnable() {
-        copyRunnable = new CopyRunnable(this);
-        copyRunnable.runTaskTimer(Main.getInstance(), 0, 0);
+        copyRunnableManager.startCopyRunnable(this);
     }
 
     public void endProcess() {
@@ -151,13 +147,12 @@ public class CopyService {
     }
 
     public void abortProcess() {
-        if (copyRunnable.isCancelled()) {
-            throw new IllegalStateException(ErrorMessages.NOTHING_TO_ABORT.getMessage());
-        }
-        copyRunnable.cancel();
-        locationService.resetLocations();
-        objectInMemoryService.clearObject();
-        copyRunnable = null;
+        printAbortedOnScreen();
+        copyRunnableManager.abortProcess();
+    }
+
+    private void printAbortedOnScreen() {
+        operationUtils.printAbortedOnScreen(player);
     }
 
     private void setPlayerAndWorld(Player player) {
