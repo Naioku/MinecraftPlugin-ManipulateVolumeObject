@@ -1,6 +1,7 @@
 package pl.adrian_komuda.manipulate_volume_object.runnables;
 
 import org.bukkit.scheduler.BukkitRunnable;
+import pl.adrian_komuda.manipulate_volume_object.runnables.managers.GeneralRunnableManager;
 
 public class OperationRunnable extends BukkitRunnable {
 
@@ -16,9 +17,9 @@ public class OperationRunnable extends BukkitRunnable {
         for (int i = 1; i <= manager.getCallsQuantityForOneTick(); i++) {
             if (manager.isPreparationRunning()) {
                 manager.printProcessingOnScreen();
-                manager.countOneBlock();
+                manager.preparationToOneCircuit();
             } else if (manager.isExactProcessRunning()) {
-                manager.exactProcessToOneBlock();
+                manager.exactProcessToOneCircuit();
                 manager.printCompletionPercentOnScreen();
             } else {
                 manager.printDoneOnScreen();

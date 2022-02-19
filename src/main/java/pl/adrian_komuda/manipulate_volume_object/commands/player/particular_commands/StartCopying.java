@@ -11,8 +11,9 @@ public class StartCopying implements PlayerCommandsPerformers {
 
     @Override
     public void perform(Player player, String command, List<String> args) {
+        OperationService operationService = new OperationService(player);
+
         try {
-            OperationService operationService = new OperationService(player);
             operationService.startCopyRunnable();
         } catch (IllegalArgumentException e) {
             player.sendMessage(ErrorMessages.LOCATIONS_NOT_SET.getMessage());

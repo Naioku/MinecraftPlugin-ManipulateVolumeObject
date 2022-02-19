@@ -1,4 +1,4 @@
-package pl.adrian_komuda.manipulate_volume_object.runnables;
+package pl.adrian_komuda.manipulate_volume_object.runnables.managers;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -20,9 +20,7 @@ public abstract class GeneralRunnableManager {
     protected World world;
     protected Vector absoluteStartingVector;
     protected Vector absoluteEndingVector;
-    protected Vector pointingBlockVector;
 
-    protected Vector relativeVector;
     protected double x = 0;
     protected double y = 0;
     protected double z = 0;
@@ -30,6 +28,7 @@ public abstract class GeneralRunnableManager {
     protected int maxCounter = 0;
     protected boolean isPreparationRunning = false;
     protected boolean isExactProcessRunning = false;
+    protected boolean isIterationDone = false;
 
     // make that value would be read from the config file
     protected final int callsQuantityForOneTick = 1;
@@ -40,7 +39,8 @@ public abstract class GeneralRunnableManager {
         deleteObjectInMemory();
     }
 
-    public abstract void exactProcessToOneBlock();
+    public abstract void preparationToOneCircuit();
+    public abstract void exactProcessToOneCircuit();
 
     public void startWholeProcess() {
         startPreparation();
@@ -49,30 +49,6 @@ public abstract class GeneralRunnableManager {
     public void endWholeProcess(BukkitRunnable runnable) {
         locationService.resetLocations();
         runnable.cancel();
-    }
-
-    public void countOneBlock() {
-        maxCounter++;
-
-        pointingBlockVector = absoluteStartingVector.clone();
-        relativeVector = new Vector(x, y, z);
-        pointingBlockVector.add(relativeVector);
-
-        x++;
-
-        if (x + absoluteStartingVector.getX() > absoluteEndingVector.getX()) {
-            y++;
-            x = 0;
-            if (y + absoluteStartingVector.getY() > absoluteEndingVector.getY()) {
-                z++;
-                y = 0;
-                if (z + absoluteStartingVector.getZ() > absoluteEndingVector.getZ()) {
-                    z = 0;
-                    stopPreparation();
-                    startExactProcess();
-                }
-            }
-        }
     }
 
     public void printCompletionPercentOnScreen() {
@@ -104,14 +80,16 @@ public abstract class GeneralRunnableManager {
     }
 
     private void startPreparation() {
+        isIterationDone = false;
         isPreparationRunning = true;
     }
 
-    private void startExactProcess() {
+    protected void startExactProcess() {
+        isIterationDone = false;
         isExactProcessRunning = true;
     }
 
-    private void stopPreparation() {
+    protected void stopPreparation() {
         isPreparationRunning = false;
     }
 
@@ -128,7 +106,6 @@ public abstract class GeneralRunnableManager {
         Location location2 = locationService.getLocation2();
         this.absoluteStartingVector = Vector.getMinimum(location1.toVector(), location2.toVector());
         this.absoluteEndingVector = Vector.getMaximum(location1.toVector(), location2.toVector());
-        this.pointingBlockVector = absoluteStartingVector.clone();
     }
 
     private void deleteObjectInMemory() {

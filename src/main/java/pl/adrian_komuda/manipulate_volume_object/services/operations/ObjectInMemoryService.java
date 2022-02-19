@@ -30,4 +30,12 @@ public class ObjectInMemoryService {
     public String getObjectAsString() {
         return objectInMemory.toString();
     }
+
+    public boolean isObjectInMemory() {
+        return !objectInMemory.isEmpty();
+    }
+
+    public int getSize() {
+        return objectInMemory.size();
+    }
 }
