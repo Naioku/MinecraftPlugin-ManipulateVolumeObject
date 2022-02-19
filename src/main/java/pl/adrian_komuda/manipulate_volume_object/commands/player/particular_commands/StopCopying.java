@@ -10,13 +10,11 @@ import java.util.List;
 public class StopCopying implements PlayerCommandsPerformers {
     @Override
     public void perform(Player player, String command, List<String> args) {
-        player.sendMessage("Performing " + this.getClass().getSimpleName()); // all logic
-//
-//        try {
-//            CopyService copyService = new CopyService(player);
-//            copyService.abortProcess();
-//        } catch (IllegalArgumentException e) {
-//            player.sendMessage(ErrorMessages.NOTHING_TO_ABORT.getMessage());
-//        }
+        try {
+            CopyService copyService = new CopyService(player);
+            copyService.abortProcess();
+        } catch (IllegalArgumentException e) {
+            player.sendMessage(ErrorMessages.NOTHING_TO_ABORT.getMessage());
+        }
     }
 }

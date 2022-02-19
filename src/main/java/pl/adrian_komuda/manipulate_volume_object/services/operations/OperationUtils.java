@@ -56,4 +56,14 @@ public class OperationUtils {
                 message.getFadeOutTicks()
         );
     }
+
+    public void printAbortedOnScreen(Player player) {
+        var doneMessage = TitleMessages.ABORTED;
+        player.sendTitle(
+                doneMessage.getMessage(),
+                " ",
+                doneMessage.getFadeInTicks(),
+                doneMessage.getStayPeriodTicks(),
+                doneMessage.getFadeOutTicks());
+    }
 }

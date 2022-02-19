@@ -11,7 +11,8 @@ public enum PluginColors {
     HIGHLIGHT_INFO(ChatColor.AQUA),
     PROCESSING_TITLE(ChatColor.WHITE),
     PERCENT_TITLE(ChatColor.WHITE),
-    DONE_TITLE(ChatColor.GOLD);
+    DONE_TITLE(ChatColor.GOLD),
+    ABORTED_TITLE(ChatColor.GOLD);
 
     private final ChatColor color;
 
