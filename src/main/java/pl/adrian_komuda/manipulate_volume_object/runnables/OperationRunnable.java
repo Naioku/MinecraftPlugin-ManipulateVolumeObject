@@ -2,27 +2,27 @@ package pl.adrian_komuda.manipulate_volume_object.runnables;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class CopyRunnable extends BukkitRunnable {
+public class OperationRunnable extends BukkitRunnable {
 
-    CopyRunnableManager manager;
+    GeneralRunnableManager manager;
 
-    public CopyRunnable(CopyRunnableManager manager) {
+    public OperationRunnable(GeneralRunnableManager manager) {
         this.manager = manager;
-        this.manager.startProcess();
+        this.manager.startWholeProcess();
     }
 
     @Override
     public void run() {
         for (int i = 1; i <= manager.getCallsQuantityForOneTick(); i++) {
-            if (manager.isProcessingRunning()) {
+            if (manager.isPreparationRunning()) {
                 manager.printProcessingOnScreen();
                 manager.countOneBlock();
-            } else if (manager.isCopyingRunning()) {
-                manager.copyOneBlock();
+            } else if (manager.isExactProcessRunning()) {
+                manager.exactProcessToOneBlock();
                 manager.printCompletionPercentOnScreen();
             } else {
                 manager.printDoneOnScreen();
-                manager.endProcess(this);
+                manager.endWholeProcess(this);
                 break;
             }
         }

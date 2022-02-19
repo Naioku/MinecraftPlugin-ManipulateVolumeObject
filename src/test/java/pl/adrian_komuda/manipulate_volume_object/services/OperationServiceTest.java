@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.adrian_komuda.manipulate_volume_object.TestFlags;
 
-class CopyServiceTest {
+class OperationServiceTest {
 
     @BeforeAll
     static void setTestFlag() {
