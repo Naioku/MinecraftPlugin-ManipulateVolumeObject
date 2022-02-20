@@ -6,14 +6,15 @@ import pl.adrian_komuda.manipulate_volume_object.services.operations.OperationSe
 
 import java.util.List;
 
-public class AbortOperation implements PlayerCommandsPerformers {
+public class StartDeleting implements PlayerCommandsPerformers {
+
     @Override
     public void perform(Player player, String command, List<String> args) {
         OperationService operationService = new OperationService(player);
 
         try {
-            operationService.abortProcess();
-        } catch (IllegalStateException e) {
+            operationService.startDeleteRunnable();
+        } catch (IllegalArgumentException | IllegalStateException e) {
             player.sendMessage(e.getMessage());
         }
     }

@@ -11,7 +11,7 @@ public enum AllPlayerCommands {
     START_COPYING("start_copying", new StartCopying()),
     ABORT_OPERATION("abort_operation", new AbortOperation()),
     START_PASTING("start_pasting", new StartPasting()),
-    // START_DELETING,
+    START_DELETING("start_deleting", new StartDeleting()),
     // STOP_DELETING,
 //    UNDO("undo", new Undo()),
     CHANGE_OPTION("change_option", new ChangeOption()), // ok

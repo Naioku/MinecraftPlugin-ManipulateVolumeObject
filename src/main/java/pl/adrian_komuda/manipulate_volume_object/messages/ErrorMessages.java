@@ -8,7 +8,9 @@ public enum ErrorMessages {
     COMMAND_ONLY_FOR_PLAYERS("That command is designed only for players."),
     LOCATIONS_NOT_SET("Locations are not set."),
     LOCATION1_NOT_SET("Location1 is not set."),
-    NOTHING_TO_ABORT("There is no process to abort.");
+    NOTHING_TO_ABORT("There is no process to abort."),
+    PROCESS_IS_RUNNING("Some process is already running. Wait for end or abort it."),
+    NO_OBJECT_IN_MEMORY("There is no object in memory to paste. Copy one before.");
 
     private final String message;
 

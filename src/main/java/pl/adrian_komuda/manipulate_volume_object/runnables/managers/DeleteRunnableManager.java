@@ -6,15 +6,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
 
-public class CopyRunnableManager extends OperationRunnableManager {
+public class DeleteRunnableManager extends OperationRunnableManager {
 
-    private Vector absoluteStartingVector;
+    protected Vector absoluteStartingVector;
     private Vector absoluteEndingVector;
 
-    public CopyRunnableManager(Player player) throws IllegalArgumentException {
+    public DeleteRunnableManager(Player player) throws IllegalArgumentException {
         super(player);
         setUpVectors();
-        deleteObjectInMemory();
     }
 
     @Override
@@ -24,7 +23,7 @@ public class CopyRunnableManager extends OperationRunnableManager {
 
     @Override
     public void exactProcessToOneCircuit() {
-        copyOneBlock();
+        deleteOneBlock();
     }
 
     private void countOneBlock() {
@@ -34,26 +33,6 @@ public class CopyRunnableManager extends OperationRunnableManager {
             stopPreparation();
             startExactProcess();
         }
-    }
-
-    private void copyOneBlock() {
-        counter++;
-
-        Vector relativeVector = new Vector(x, y, z);
-        Material copiedBlockMat = getMaterial(relativeVector);
-        objectInMemoryService.addBlock(relativeVector, copiedBlockMat);
-
-        moveCoordinates();
-        if (isIterationDone) {
-            stopExactProcess();
-        }
-    }
-
-    private Material getMaterial(Vector relativeVector) {
-        Vector pointingBlockVector = absoluteStartingVector.clone();
-        pointingBlockVector.add(relativeVector);
-        Location copiedBlockLoc = new Location(world, pointingBlockVector.getX(), pointingBlockVector.getY(), pointingBlockVector.getZ());
-        return world.getBlockAt(copiedBlockLoc).getType();
     }
 
     private void moveCoordinates() {
@@ -73,6 +52,23 @@ public class CopyRunnableManager extends OperationRunnableManager {
         }
     }
 
+    private void deleteOneBlock() {
+        counter++;
+
+        Vector relativeVector = new Vector(x, y, z);
+        deleteBlockAtLocationPointedByRelativeVector(relativeVector);
+
+        moveCoordinates();
+        if (isIterationDone) {
+            stopExactProcess();
+        }
+    }
+
+    private void deleteBlockAtLocationPointedByRelativeVector(Vector relativeVector) {
+        Location location =  absoluteStartingVector.clone().add(relativeVector).toLocation(world);
+        world.getBlockAt(location).setType(Material.AIR);
+    }
+
     private void setUpVectors() throws IllegalArgumentException {
         if (!locationService.areLocationsSet()) {
             throw new IllegalArgumentException(ErrorMessages.LOCATIONS_NOT_SET.getMessage());
@@ -81,9 +77,5 @@ public class CopyRunnableManager extends OperationRunnableManager {
         Location location2 = locationService.getLocation2();
         this.absoluteStartingVector = Vector.getMinimum(location1.toVector(), location2.toVector());
         this.absoluteEndingVector = Vector.getMaximum(location1.toVector(), location2.toVector());
-    }
-
-    private void deleteObjectInMemory() {
-        objectInMemoryService.clearObject();
     }
 }
