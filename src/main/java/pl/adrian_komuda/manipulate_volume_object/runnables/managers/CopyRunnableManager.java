@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
 
-public class CopyRunnableManager extends GeneralRunnableManager {
+public class CopyRunnableManager extends OperationRunnableManager {
 
     private Vector absoluteStartingVector;
     private Vector absoluteEndingVector;

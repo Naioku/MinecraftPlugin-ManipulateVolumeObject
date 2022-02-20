@@ -7,14 +7,14 @@ import pl.adrian_komuda.manipulate_volume_object.services.operations.OperationSe
 
 import java.util.List;
 
-public class StopCopying implements PlayerCommandsPerformers {
+public class AbortOperation implements PlayerCommandsPerformers {
     @Override
     public void perform(Player player, String command, List<String> args) {
         OperationService operationService = new OperationService(player);
 
         try {
             operationService.abortProcess();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             player.sendMessage(ErrorMessages.NOTHING_TO_ABORT.getMessage());
         }
     }

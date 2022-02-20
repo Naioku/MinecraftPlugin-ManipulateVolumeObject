@@ -37,8 +37,8 @@ public class OperationService {
         }
     }
 
-    public void abortProcess() throws IllegalArgumentException {
-        if (OPERATION_RUNNABLE.isCancelled()) {
+    public void abortProcess() throws IllegalStateException {
+        if (!isRunnableProcessRunning()) {
             throw new IllegalStateException(ErrorMessages.NOTHING_TO_ABORT.getMessage());
         }
         OPERATION_RUNNABLE.cancel();

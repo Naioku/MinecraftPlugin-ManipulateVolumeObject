@@ -8,7 +8,7 @@ import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
 
 import java.util.Map;
 
-public class PasteRunnableManager extends GeneralRunnableManager {
+public class PasteRunnableManager extends OperationRunnableManager {
 
     protected Vector absoluteStartingVector;
 

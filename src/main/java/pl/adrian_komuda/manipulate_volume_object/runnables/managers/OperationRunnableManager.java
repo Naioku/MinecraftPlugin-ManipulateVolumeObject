@@ -7,7 +7,7 @@ import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
 import pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service.ObjectInMemoryService;
 import pl.adrian_komuda.manipulate_volume_object.services.operations.OperationUtils;
 
-public abstract class GeneralRunnableManager {
+public abstract class OperationRunnableManager {
 
     protected final LocationService locationService = LocationService.getInstance();
     protected final ObjectInMemoryService objectInMemoryService = ObjectInMemoryService.getInstance();
@@ -28,7 +28,7 @@ public abstract class GeneralRunnableManager {
     // make that value would be read from the config file
     protected final int callsQuantityForOneTick = 1;
 
-    public GeneralRunnableManager(Player player) throws IllegalArgumentException {
+    public OperationRunnableManager(Player player) throws IllegalArgumentException {
         setPlayerAndWorld(player);
     }
 

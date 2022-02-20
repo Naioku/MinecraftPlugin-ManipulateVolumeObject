@@ -1,13 +1,13 @@
 package pl.adrian_komuda.manipulate_volume_object.runnables;
 
 import org.bukkit.scheduler.BukkitRunnable;
-import pl.adrian_komuda.manipulate_volume_object.runnables.managers.GeneralRunnableManager;
+import pl.adrian_komuda.manipulate_volume_object.runnables.managers.OperationRunnableManager;
 
 public class OperationRunnable extends BukkitRunnable {
 
-    private final GeneralRunnableManager manager;
+    private final OperationRunnableManager manager;
 
-    public OperationRunnable(GeneralRunnableManager manager) {
+    public OperationRunnable(OperationRunnableManager manager) {
         this.manager = manager;
         this.manager.startWholeProcess();
     }
