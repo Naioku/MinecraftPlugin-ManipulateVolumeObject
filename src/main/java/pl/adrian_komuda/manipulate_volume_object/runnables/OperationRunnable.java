@@ -5,7 +5,7 @@ import pl.adrian_komuda.manipulate_volume_object.runnables.managers.GeneralRunna
 
 public class OperationRunnable extends BukkitRunnable {
 
-    GeneralRunnableManager manager;
+    private final GeneralRunnableManager manager;
 
     public OperationRunnable(GeneralRunnableManager manager) {
         this.manager = manager;

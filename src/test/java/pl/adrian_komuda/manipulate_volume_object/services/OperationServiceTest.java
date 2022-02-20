@@ -4,8 +4,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.adrian_komuda.manipulate_volume_object.TestFlags;
+import pl.adrian_komuda.manipulate_volume_object.TestTemplate;
 
-class OperationServiceTest {
+class OperationServiceTest extends TestTemplate {
 
     @BeforeAll
     static void setTestFlag() {

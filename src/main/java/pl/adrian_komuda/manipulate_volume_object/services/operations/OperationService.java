@@ -8,6 +8,7 @@ import pl.adrian_komuda.manipulate_volume_object.runnables.managers.CopyRunnable
 import pl.adrian_komuda.manipulate_volume_object.runnables.OperationRunnable;
 import pl.adrian_komuda.manipulate_volume_object.runnables.managers.PasteRunnableManager;
 import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
+import pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service.ObjectInMemoryService;
 
 public class OperationService {
 

@@ -1,16 +1,17 @@
-package pl.adrian_komuda.manipulate_volume_object.services.operations;
+package pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service;
 
 import org.bukkit.Material;
 import org.bukkit.util.Vector;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ObjectInMemoryService {
 
     private static ObjectInMemoryService instance;
     private final LinkedHashMap<Vector, Material> objectInMemory = new LinkedHashMap<>();
 
-    private ObjectInMemoryService() {}
+    ObjectInMemoryService() {}
 
     public static ObjectInMemoryService getInstance() {
         if (instance == null) {
@@ -37,5 +38,9 @@ public class ObjectInMemoryService {
 
     public int getSize() {
         return objectInMemory.size();
+    }
+
+    public Map.Entry<Vector, Material> getEntry(int index) {
+        return objectInMemory.entrySet().stream().toList().get(index);
     }
 }

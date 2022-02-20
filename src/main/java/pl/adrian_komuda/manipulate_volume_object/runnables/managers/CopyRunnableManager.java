@@ -4,11 +4,17 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
+import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
 
 public class CopyRunnableManager extends GeneralRunnableManager {
 
+    private Vector absoluteStartingVector;
+    private Vector absoluteEndingVector;
+
     public CopyRunnableManager(Player player) throws IllegalArgumentException {
         super(player);
+        setUpVectors();
+        deleteObjectInMemory();
     }
 
     @Override
@@ -65,5 +71,19 @@ public class CopyRunnableManager extends GeneralRunnableManager {
                 }
             }
         }
+    }
+
+    private void setUpVectors() throws IllegalArgumentException {
+        if (!locationService.areLocationsSet()) {
+            throw new IllegalArgumentException(ErrorMessages.LOCATIONS_NOT_SET.getMessage());
+        }
+        Location location1 = locationService.getLocation1();
+        Location location2 = locationService.getLocation2();
+        this.absoluteStartingVector = Vector.getMinimum(location1.toVector(), location2.toVector());
+        this.absoluteEndingVector = Vector.getMaximum(location1.toVector(), location2.toVector());
+    }
+
+    private void deleteObjectInMemory() {
+        objectInMemoryService.clearObject();
     }
 }

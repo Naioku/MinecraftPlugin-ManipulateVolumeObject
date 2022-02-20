@@ -1,13 +1,10 @@
 package pl.adrian_komuda.manipulate_volume_object.runnables.managers;
 
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.Vector;
-import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
 import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
-import pl.adrian_komuda.manipulate_volume_object.services.operations.ObjectInMemoryService;
+import pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service.ObjectInMemoryService;
 import pl.adrian_komuda.manipulate_volume_object.services.operations.OperationUtils;
 
 public abstract class GeneralRunnableManager {
@@ -18,8 +15,6 @@ public abstract class GeneralRunnableManager {
 
     protected Player player;
     protected World world;
-    protected Vector absoluteStartingVector;
-    protected Vector absoluteEndingVector;
 
     protected double x = 0;
     protected double y = 0;
@@ -35,8 +30,6 @@ public abstract class GeneralRunnableManager {
 
     public GeneralRunnableManager(Player player) throws IllegalArgumentException {
         setPlayerAndWorld(player);
-        setUpVectors();
-        deleteObjectInMemory();
     }
 
     public abstract void preparationToOneCircuit();
@@ -96,19 +89,5 @@ public abstract class GeneralRunnableManager {
     private void setPlayerAndWorld(Player player) {
         this.player = player;
         this.world = player.getWorld();
-    }
-
-    private void setUpVectors() throws IllegalArgumentException {
-        if (!locationService.areLocationsSet()) {
-            throw new IllegalArgumentException(ErrorMessages.LOCATIONS_NOT_SET.getMessage());
-        }
-        Location location1 = locationService.getLocation1();
-        Location location2 = locationService.getLocation2();
-        this.absoluteStartingVector = Vector.getMinimum(location1.toVector(), location2.toVector());
-        this.absoluteEndingVector = Vector.getMaximum(location1.toVector(), location2.toVector());
-    }
-
-    private void deleteObjectInMemory() {
-        objectInMemoryService.clearObject();
     }
 }
