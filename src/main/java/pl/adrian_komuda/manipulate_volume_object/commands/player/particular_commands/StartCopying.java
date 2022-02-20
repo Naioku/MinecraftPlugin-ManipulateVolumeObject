@@ -15,8 +15,8 @@ public class StartCopying implements PlayerCommandsPerformers {
 
         try {
             operationService.startCopyRunnable();
-        } catch (IllegalArgumentException e) {
-            player.sendMessage(ErrorMessages.LOCATIONS_NOT_SET.getMessage());
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            player.sendMessage(e.getMessage());
         }
     }
 }

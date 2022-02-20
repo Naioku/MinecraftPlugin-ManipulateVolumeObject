@@ -6,6 +6,7 @@ import pl.adrian_komuda.manipulate_volume_object.Main;
 import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
 import pl.adrian_komuda.manipulate_volume_object.runnables.managers.CopyRunnableManager;
 import pl.adrian_komuda.manipulate_volume_object.runnables.OperationRunnable;
+import pl.adrian_komuda.manipulate_volume_object.runnables.managers.DeleteRunnableManager;
 import pl.adrian_komuda.manipulate_volume_object.runnables.managers.PasteRunnableManager;
 import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
 import pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service.ObjectInMemoryService;
@@ -24,17 +25,34 @@ public class OperationService {
     }
 
     public void startCopyRunnable() throws IllegalArgumentException {
-        if (!isRunnableProcessRunning()) {
-            OPERATION_RUNNABLE = new OperationRunnable(new CopyRunnableManager(player));
-            OPERATION_RUNNABLE.runTaskTimer(Main.getInstance(), 0, 0);
+        if (isRunnableProcessRunning()) {
+            throw new IllegalStateException(ErrorMessages.PROCESS_IS_RUNNING.getMessage());
         }
+        OPERATION_RUNNABLE = new OperationRunnable(new CopyRunnableManager(player));
+        OPERATION_RUNNABLE.runTaskTimer(Main.getInstance(), 0, 0);
+
     }
 
-    public void startPasteRunnable() throws IllegalArgumentException {
-        if (!isRunnableProcessRunning() && objectInMemoryService.isObjectInMemory()) {
-            OPERATION_RUNNABLE = new OperationRunnable(new PasteRunnableManager(player));
-            OPERATION_RUNNABLE.runTaskTimer(Main.getInstance(), 0, 0);
+    public void startPasteRunnable() throws IllegalArgumentException, IllegalStateException {
+        if (isRunnableProcessRunning()) {
+            throw new IllegalStateException(ErrorMessages.PROCESS_IS_RUNNING.getMessage());
         }
+        if (!objectInMemoryService.isObjectInMemory()) {
+            throw new IllegalStateException(ErrorMessages.NO_OBJECT_IN_MEMORY.getMessage());
+        }
+
+        OPERATION_RUNNABLE = new OperationRunnable(new PasteRunnableManager(player));
+        OPERATION_RUNNABLE.runTaskTimer(Main.getInstance(), 0, 0);
+    }
+
+    public void startDeleteRunnable() throws IllegalArgumentException {
+        if (isRunnableProcessRunning()) {
+            throw new IllegalStateException(ErrorMessages.PROCESS_IS_RUNNING.getMessage());
+        }
+
+        OPERATION_RUNNABLE = new OperationRunnable(new DeleteRunnableManager(player));
+        OPERATION_RUNNABLE.runTaskTimer(Main.getInstance(), 0, 0);
+
     }
 
     public void abortProcess() throws IllegalStateException {
