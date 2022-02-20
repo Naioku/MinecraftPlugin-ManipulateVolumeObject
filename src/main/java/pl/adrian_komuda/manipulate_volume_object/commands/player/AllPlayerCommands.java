@@ -9,9 +9,8 @@ import java.util.List;
 public enum AllPlayerCommands {
     GET_MARKER("get_marker", new GetMarker()),
     START_COPYING("start_copying", new StartCopying()),
-    STOP_COPYING("stop_copying", new StopCopying()),
+    ABORT_OPERATION("abort_operation", new AbortOperation()),
     START_PASTING("start_pasting", new StartPasting()),
-    STOP_PASTING("stop_pasting", new StopPasting()),
     // START_DELETING,
     // STOP_DELETING,
 //    UNDO("undo", new Undo()),

@@ -44,6 +44,10 @@ public class LocationService {
         return location1 != null && location2 != null;
     }
 
+    public boolean isLocation1Set() {
+        return location1 != null;
+    }
+
     public Location getLocation1() {
         return location1;
     }

@@ -6,18 +6,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.adrian_komuda.manipulate_volume_object.TestFlags;
+import pl.adrian_komuda.manipulate_volume_object.TestTemplate;
 import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith0Params;
 import pl.adrian_komuda.manipulate_volume_object.messages.MessagesWith2Params;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-class LocationServiceTest {
-
-    @BeforeAll
-    static void setTestFlag() {
-        TestFlags.UNIT_TEST_FLAG = true;
-    }
+class LocationServiceTest extends TestTemplate {
 
     @Test
     void afterGetInstanceCallItShouldBeReturnedTheSameInstanceAlways() {
@@ -128,10 +124,4 @@ class LocationServiceTest {
         // then
         assertThat(answerMessage).isEqualTo(properAnswerMessage);
     }
-
-    @AfterAll
-    static void unsetTestFlag() {
-        TestFlags.UNIT_TEST_FLAG =  false;
-    }
-
 }

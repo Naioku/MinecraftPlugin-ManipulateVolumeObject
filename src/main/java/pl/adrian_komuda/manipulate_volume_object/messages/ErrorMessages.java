@@ -7,6 +7,7 @@ import java.util.UUID;
 public enum ErrorMessages {
     COMMAND_ONLY_FOR_PLAYERS("That command is designed only for players."),
     LOCATIONS_NOT_SET("Locations are not set."),
+    LOCATION1_NOT_SET("Location1 is not set."),
     NOTHING_TO_ABORT("There is no process to abort.");
 
     private final String message;

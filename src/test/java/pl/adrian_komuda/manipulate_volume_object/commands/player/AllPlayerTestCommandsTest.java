@@ -5,16 +5,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import pl.adrian_komuda.manipulate_volume_object.TestFlags;
+import pl.adrian_komuda.manipulate_volume_object.TestTemplate;
 import pl.adrian_komuda.manipulate_volume_object.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AllPlayerTestCommandsTest {
-
-    @BeforeAll
-    static void setTestFlag() {
-        TestFlags.UNIT_TEST_FLAG = true;
-    }
+class AllPlayerTestCommandsTest extends TestTemplate {
 
     @ParameterizedTest
     @EnumSource(AllPlayerTestCommands.class)
@@ -43,10 +39,4 @@ class AllPlayerTestCommandsTest {
         // then
         assertThat(resultEnumValue).isEqualTo(enumValue);
     }
-
-    @AfterAll
-    static void unsetTestFlag() {
-        TestFlags.UNIT_TEST_FLAG =  false;
-    }
-
 }

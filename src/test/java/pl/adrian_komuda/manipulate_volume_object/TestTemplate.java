@@ -1,25 +1,20 @@
-package pl.adrian_komuda.manipulate_volume_object.services;
+package pl.adrian_komuda.manipulate_volume_object;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import pl.adrian_komuda.manipulate_volume_object.TestFlags;
 
-class CopyServiceTest {
-
+/**
+ * Add to every test You know it will be calling methods, which require of running bukkit server,
+ * but You don't need them to proper testing process.
+ */
+public abstract class TestTemplate {
     @BeforeAll
     static void setTestFlag() {
         TestFlags.UNIT_TEST_FLAG = true;
-    }
-
-    @Test
-    void test1() {
-
     }
 
     @AfterAll
     static void unsetTestFlag() {
         TestFlags.UNIT_TEST_FLAG =  false;
     }
-
 }

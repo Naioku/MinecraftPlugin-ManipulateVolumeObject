@@ -4,13 +4,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.adrian_komuda.manipulate_volume_object.TestFlags;
+import pl.adrian_komuda.manipulate_volume_object.TestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ChangeOptionServiceTest {
+class ChangeOptionServiceTest extends TestTemplate {
 
     @BeforeAll
     static void setTestFlag() {
