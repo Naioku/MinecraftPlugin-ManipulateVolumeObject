@@ -31,7 +31,7 @@ public class PasteRunnableManager extends OperationRunnableManager {
 
     private void pasteOneBlock() {
         Map.Entry<Vector, Material> entry = objectInMemoryService.getEntry(counter);
-        Vector relativeVector = entry.getKey();
+        Vector relativeVector = entry.getKey().clone();
         relativeVector.add(new Vector(0, 1, 0)); // To paste block one level up from the marked block.
         Material material = entry.getValue();
 
