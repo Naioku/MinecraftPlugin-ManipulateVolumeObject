@@ -5,11 +5,14 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
+import pl.adrian_komuda.manipulate_volume_object.services.memory_services.HistoryService;
 
 public class DeleteRunnableManager extends OperationRunnableManager {
 
     protected Vector absoluteStartingVector;
     private Vector absoluteEndingVector;
+
+    private HistoryService historyService = HistoryService.getInstance();
 
     public DeleteRunnableManager(Player player) throws IllegalArgumentException {
         super(player);
@@ -19,6 +22,27 @@ public class DeleteRunnableManager extends OperationRunnableManager {
     @Override
     public void preparationToOneCircuit() {
         countOneBlock();
+        copyOneBlockToHistory();
+
+        if (isIterationDone) {
+            stopPreparation();
+            startExactProcess();
+        }
+    }
+
+    private void copyOneBlockToHistory() {
+        Vector absoluteVector = absoluteStartingVector.clone();
+        absoluteVector.add(new Vector(x, y, z));
+        Material copiedBlockMat = getMaterial(absoluteVector);
+        historyService.addBlockToSavingSlot(absoluteVector, copiedBlockMat);
+        if (isIterationDone) {
+            historyService.saveObjectInHistory();
+        }
+    }
+
+    private Material getMaterial(Vector vector) {
+        Location copiedBlockLoc = new Location(world, vector.getX(), vector.getY(), vector.getZ());
+        return world.getBlockAt(copiedBlockLoc).getType();
     }
 
     @Override
@@ -29,10 +53,6 @@ public class DeleteRunnableManager extends OperationRunnableManager {
     private void countOneBlock() {
         maxCounter++;
         moveCoordinates();
-        if (isIterationDone) {
-            stopPreparation();
-            startExactProcess();
-        }
     }
 
     private void moveCoordinates() {

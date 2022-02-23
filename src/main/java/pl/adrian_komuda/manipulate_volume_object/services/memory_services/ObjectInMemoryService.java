@@ -1,4 +1,4 @@
-package pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service;
+package pl.adrian_komuda.manipulate_volume_object.services.memory_services;
 
 import org.bukkit.Material;
 import org.bukkit.util.Vector;
@@ -9,7 +9,7 @@ import java.util.Map;
 public class ObjectInMemoryService {
 
     private static ObjectInMemoryService instance;
-    private final LinkedHashMap<Vector, Material> objectInMemory = new LinkedHashMap<>();
+    final LinkedHashMap<Vector, Material> copiedObjectInMemory = new LinkedHashMap<>();
 
     ObjectInMemoryService() {}
 
@@ -20,27 +20,27 @@ public class ObjectInMemoryService {
         return instance;
     }
 
-    public void addBlock(Vector vector, Material material) {
-        objectInMemory.put(vector, material);
+    public void addBlockToCopiedObject(Vector vector, Material material) {
+        copiedObjectInMemory.put(vector, material);
     }
 
     public void clearObject() {
-        objectInMemory.clear();
+        copiedObjectInMemory.clear();
     }
 
     public String getObjectAsString() {
-        return objectInMemory.toString();
+        return copiedObjectInMemory.toString();
     }
 
-    public boolean isObjectInMemory() {
-        return !objectInMemory.isEmpty();
+    public boolean isCopiedObjectNotEmpty() {
+        return !copiedObjectInMemory.isEmpty();
     }
 
     public int getSize() {
-        return objectInMemory.size();
+        return copiedObjectInMemory.size();
     }
 
     public Map.Entry<Vector, Material> getEntry(int index) {
-        return objectInMemory.entrySet().stream().toList().get(index);
+        return copiedObjectInMemory.entrySet().stream().toList().get(index);
     }
 }

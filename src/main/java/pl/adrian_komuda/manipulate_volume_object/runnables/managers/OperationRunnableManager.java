@@ -4,7 +4,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
-import pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service.ObjectInMemoryService;
+import pl.adrian_komuda.manipulate_volume_object.services.memory_services.ObjectInMemoryService;
 import pl.adrian_komuda.manipulate_volume_object.services.operations.OperationUtils;
 
 public abstract class OperationRunnableManager {
