@@ -8,14 +8,17 @@ import pl.adrian_komuda.manipulate_volume_object.runnables.managers.CopyRunnable
 import pl.adrian_komuda.manipulate_volume_object.runnables.OperationRunnable;
 import pl.adrian_komuda.manipulate_volume_object.runnables.managers.DeleteRunnableManager;
 import pl.adrian_komuda.manipulate_volume_object.runnables.managers.PasteRunnableManager;
+import pl.adrian_komuda.manipulate_volume_object.runnables.managers.UndoRunnableManager;
 import pl.adrian_komuda.manipulate_volume_object.services.LocationService;
-import pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service.ObjectInMemoryService;
+import pl.adrian_komuda.manipulate_volume_object.services.memory_services.HistoryService;
+import pl.adrian_komuda.manipulate_volume_object.services.memory_services.ObjectInMemoryService;
 
 public class OperationService {
 
     private final LocationService locationService = LocationService.getInstance();
     private final ObjectInMemoryService objectInMemoryService = ObjectInMemoryService.getInstance();
     private final OperationUtils operationUtils = OperationUtils.getInstance();
+    private final HistoryService historyService = HistoryService.getInstance();
 
     private static BukkitRunnable OPERATION_RUNNABLE;
     private final Player player;
@@ -37,7 +40,7 @@ public class OperationService {
         if (isRunnableProcessRunning()) {
             throw new IllegalStateException(ErrorMessages.PROCESS_IS_RUNNING.getMessage());
         }
-        if (!objectInMemoryService.isObjectInMemory()) {
+        if (!objectInMemoryService.isCopiedObjectNotEmpty()) {
             throw new IllegalStateException(ErrorMessages.NO_OBJECT_IN_MEMORY.getMessage());
         }
 
@@ -51,6 +54,17 @@ public class OperationService {
         }
 
         OPERATION_RUNNABLE = new OperationRunnable(new DeleteRunnableManager(player));
+        OPERATION_RUNNABLE.runTaskTimer(Main.getInstance(), 0, 0);
+
+    }
+
+    public void startUndoRunnable() throws IllegalArgumentException, IllegalStateException {
+        if (isRunnableProcessRunning()) {
+            throw new IllegalStateException(ErrorMessages.PROCESS_IS_RUNNING.getMessage());
+        }
+
+        historyService.loadLastObjectFromHistory();
+        OPERATION_RUNNABLE = new OperationRunnable(new UndoRunnableManager(player));
         OPERATION_RUNNABLE.runTaskTimer(Main.getInstance(), 0, 0);
 
     }

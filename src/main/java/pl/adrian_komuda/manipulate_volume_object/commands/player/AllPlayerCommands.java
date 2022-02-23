@@ -12,8 +12,7 @@ public enum AllPlayerCommands {
     ABORT_OPERATION("abort_operation", new AbortOperation()),
     START_PASTING("start_pasting", new StartPasting()),
     START_DELETING("start_deleting", new StartDeleting()),
-    // STOP_DELETING,
-//    UNDO("undo", new Undo()),
+    UNDO("undo", new Undo()),
     CHANGE_OPTION("change_option", new ChangeOption()), // ok
     PRINT_OPTION("print_option", new PrintOption()), // ok
     PRINT_LOCATIONS("print_locations", new PrintLocations()); // ok

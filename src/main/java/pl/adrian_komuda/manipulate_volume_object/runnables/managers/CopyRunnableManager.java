@@ -20,33 +20,35 @@ public class CopyRunnableManager extends OperationRunnableManager {
     @Override
     public void preparationToOneCircuit() {
         countOneBlock();
-    }
 
-    @Override
-    public void exactProcessToOneCircuit() {
-        copyOneBlock();
-    }
-
-    private void countOneBlock() {
-        maxCounter++;
-        moveCoordinates();
         if (isIterationDone) {
             stopPreparation();
             startExactProcess();
         }
     }
 
-    private void copyOneBlock() {
-        counter++;
+    @Override
+    public void exactProcessToOneCircuit() {
+        copyOneBlock();
 
-        Vector relativeVector = new Vector(x, y, z);
-        Material copiedBlockMat = getMaterial(relativeVector);
-        objectInMemoryService.addBlock(relativeVector, copiedBlockMat);
-
-        moveCoordinates();
         if (isIterationDone) {
             stopExactProcess();
         }
+    }
+
+    private void countOneBlock() {
+        maxCounter++;
+        moveCoordinates();
+    }
+
+    private void copyOneBlock() {
+        counter++;
+
+        var relativeVector = new Vector(x, y, z);
+        Material copiedBlockMat = getMaterial(relativeVector);
+        objectInMemoryService.addBlockToCopiedObject(relativeVector, copiedBlockMat);
+
+        moveCoordinates();
     }
 
     private Material getMaterial(Vector relativeVector) {

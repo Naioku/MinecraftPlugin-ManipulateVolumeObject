@@ -5,12 +5,14 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import pl.adrian_komuda.manipulate_volume_object.messages.ErrorMessages;
+import pl.adrian_komuda.manipulate_volume_object.services.memory_services.HistoryService;
 
 import java.util.Map;
 
 public class PasteRunnableManager extends OperationRunnableManager {
 
     protected Vector absoluteStartingVector;
+    private HistoryService historyService = HistoryService.getInstance();
 
     public PasteRunnableManager(Player player) throws IllegalArgumentException {
         super(player);
@@ -19,14 +21,34 @@ public class PasteRunnableManager extends OperationRunnableManager {
 
     @Override
     public void preparationToOneCircuit() {
-        maxCounter = objectInMemoryService.getSize() - 1;
+        maxCounter = objectInMemoryService.getSize();
         stopPreparation();
         startExactProcess();
     }
 
     @Override
     public void exactProcessToOneCircuit() {
+        copyOneBlockToHistory();
         pasteOneBlock();
+        counter++;
+    }
+
+    private void copyOneBlockToHistory() {
+        Map.Entry<Vector, Material> entry = objectInMemoryService.getEntry(counter);
+        Vector relativeVector = entry.getKey().clone();
+        Vector absoluteVector = absoluteStartingVector.clone().add(relativeVector.add(new Vector (0, 1, 0)));
+        Material copiedBlockMat = getMaterial(absoluteVector);
+
+        historyService.addBlockToSavingSlot(absoluteVector, copiedBlockMat);
+
+        if (counter == maxCounter - 1) {
+            historyService.saveObjectInHistory();
+        }
+    }
+
+    private Material getMaterial(Vector vector) {
+        Location copiedBlockLoc = new Location(world, vector.getX(), vector.getY(), vector.getZ());
+        return world.getBlockAt(copiedBlockLoc).getType();
     }
 
     private void pasteOneBlock() {
@@ -38,9 +60,7 @@ public class PasteRunnableManager extends OperationRunnableManager {
         Location location = getLocationOfPastedBlock(relativeVector);
         pasteBlockInWorld(material, location);
 
-        counter++;
-
-        if (counter > maxCounter) {
+        if (counter == maxCounter - 1) {
             stopExactProcess();
         }
     }

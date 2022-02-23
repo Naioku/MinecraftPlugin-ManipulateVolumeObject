@@ -2,7 +2,7 @@ package pl.adrian_komuda.manipulate_volume_object.commands.player.particular_tes
 
 import org.bukkit.entity.Player;
 import pl.adrian_komuda.manipulate_volume_object.commands.PlayerCommandsPerformers;
-import pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service.ObjectInMemoryService;
+import pl.adrian_komuda.manipulate_volume_object.services.memory_services.ObjectInMemoryService;
 
 import java.util.List;
 

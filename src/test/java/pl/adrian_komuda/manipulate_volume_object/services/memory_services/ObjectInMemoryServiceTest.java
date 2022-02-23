@@ -1,4 +1,4 @@
-package pl.adrian_komuda.manipulate_volume_object.services.object_in_memory_service;
+package pl.adrian_komuda.manipulate_volume_object.services.memory_services;
 
 import org.bukkit.Material;
 import org.bukkit.util.Vector;
@@ -8,7 +8,6 @@ import pl.adrian_komuda.manipulate_volume_object.TestTemplate;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ObjectInMemoryServiceTest extends TestTemplate {
 
@@ -20,7 +19,7 @@ class ObjectInMemoryServiceTest extends TestTemplate {
         Material material = Material.BRICK;
 
         // when
-        objectInMemoryService.addBlock(vector, material);
+        objectInMemoryService.addBlockToCopiedObject(vector, material);
 
         // then
         assertThat(objectInMemoryService.getSize()).isEqualTo(1);
@@ -33,7 +32,7 @@ class ObjectInMemoryServiceTest extends TestTemplate {
         Vector vector = new Vector(0, 0, 0);
         Material material = Material.BRICK;
 
-        objectInMemoryService.addBlock(vector, material);
+        objectInMemoryService.addBlockToCopiedObject(vector, material);
 
         // when
         Map.Entry<Vector, Material> entry = objectInMemoryService.getEntry(0);
@@ -54,9 +53,9 @@ class ObjectInMemoryServiceTest extends TestTemplate {
         var material2 = Material.GRASS_BLOCK;
         var material3 = Material.GLOWSTONE;
 
-        objectInMemory.addBlock(vector1, material1);
-        objectInMemory.addBlock(vector2, material2);
-        objectInMemory.addBlock(vector3, material3);
+        objectInMemory.addBlockToCopiedObject(vector1, material1);
+        objectInMemory.addBlockToCopiedObject(vector2, material2);
+        objectInMemory.addBlockToCopiedObject(vector3, material3);
 
         // when
         var result1 = objectInMemory.getEntry(0);
